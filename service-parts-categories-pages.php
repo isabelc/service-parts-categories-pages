@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Service Parts Categories Pages
-Plugin URI: @todo
+Plugin URI: http://smartestthemes.com/docs/service-categories-page-and-parts-categories-page-plugin/
 Description: Adds a shortcode to show only categories of services or parts, with images.
-Version: 0.2.9
+Version: 0.3.1
 Author: Smartest Themes
 Author URI: http://smartestthemes.com
 License: GPL2
@@ -26,14 +26,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
-// @test updater
-// this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
-define( 'EDD_SL_STORE_URL', 'http://yoursite.com' ); // IMPORTANT: change the name of this constant to something unique to prevent conflicts with other plugins using this system
-
-// the name of your product. This is the title of your product in EDD and should match the download title in EDD exactly
-define( 'EDD_SL_ITEM_NAME', 'Sample Plugin' ); // IMPORTANT: change the name of this constant to something unique to prevent conflicts with other plugins using this system
-
-
+require_once plugin_dir_path( __FILE__ ) . 'updater.php';
+if ( is_admin() ) {
+    new ST_GitHubPluginUpdater( __FILE__, 'isabelc', "service-parts-categories-pages" );
+}
 /* shortcode for listing CPT custom taxonomy (categories) */
 function smartestthemes_custom_tax_list($atts) {
 	$a = shortcode_atts(array(
@@ -668,9 +664,7 @@ function taxonomy_image_plugin_edit_tag_form( $term, $taxonomy ) {
  *
  * Creates all image controls on edit-tags.php.
  *
- * @todo      Remove rel tag from link... will need to adjust js to accomodate.
- * @since     0.7
- * @access    private
+ * @todo      Remove rel tag from link... will need to adjust js to accommodate.
  */
 function taxonomy_image_plugin_control_image( $term_id, $taxonomy ) {
 
