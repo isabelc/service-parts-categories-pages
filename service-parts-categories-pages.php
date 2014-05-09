@@ -3,8 +3,8 @@
 Plugin Name: Service Parts Categories Pages
 Plugin URI: http://smartestthemes.com/docs/service-categories-page-and-parts-categories-page-plugin/
 Description: Adds a shortcode to show only categories of services or parts, with images.
-Version: 0.3.1
 Author: Smartest Themes
+Version: 0.2.4
 Author URI: http://smartestthemes.com
 License: GPL2
 Text Domain: service-parts-categories-pages
@@ -26,10 +26,36 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
+
+
+/* @test remove
 require_once plugin_dir_path( __FILE__ ) . 'updater.php';
 if ( is_admin() ) {
     new ST_GitHubPluginUpdater( __FILE__, 'isabelc', "service-parts-categories-pages" );
 }
+
+*/
+
+/* @test */
+require_once plugin_dir_path( __FILE__ ) . 'updater.php';
+if (is_admin()) {
+    $config = array(
+        'slug' => plugin_basename(__FILE__), // this is the slug of your plugin
+        'proper_folder_name' => 'service-parts-categories-pages', // this is the name of the folder your plugin lives in
+        'api_url' => 'https://api.github.com/repos/isabelc/service-parts-categories-pages', // the github API url of your github repo
+        'raw_url' => 'https://raw.github.com/isabelc/service-parts-categories-pages/master', // the github raw url of your github repo
+        'github_url' => 'https://github.com/isabelc/service-parts-categories-pages', // the github url of your github repo
+        'zip_url' => 'https://github.com/isabelc/service-parts-categories-pages/zipball/master', // the zip url of the github repo
+        'sslverify' => true, // whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+        'requires' => '3.6', // which version of WordPress does your plugin require?
+        'tested' => '3.9.1', // which version of WordPress is your plugin tested up to?
+        'readme' => 'README.md', // which file to use as the readme for the version number
+        'access_token' => '', // Access private repositories by authorizing under Appearance > Github Updates when this example plugin is installed
+    );
+    new ST_SPCP_GitHub_Updater($config);
+}
+
+
 /* shortcode for listing CPT custom taxonomy (categories) */
 function smartestthemes_custom_tax_list($atts) {
 	$a = shortcode_atts(array(
