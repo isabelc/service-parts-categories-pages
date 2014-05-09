@@ -1,3 +1,3 @@
 Service Parts Categories Pages
 ==============================
-~Current Version:0.9.11~
+~Current Version:1.0.0~
