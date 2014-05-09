@@ -1,7 +1,7 @@
 <?php
 
 // Prevent loading this file directly and/or if the class is already defined
-if ( ! defined( 'ABSPATH' ) || class_exists( 'WPGitHubUpdater' ) || class_exists( 'ST_SPCP_GitHub_Updater' ) )
+if ( ! defined( 'ABSPATH' ) || class_exists( 'ST_SPCP_GitHub_Updater' ) )
 	return;
 
 /**
