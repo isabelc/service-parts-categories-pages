@@ -4,7 +4,7 @@ Plugin Name: Service Parts Categories Pages
 Plugin URI: http://smartestthemes.com/docs/service-categories-page-and-parts-categories-page-plugin/
 Description: Adds a shortcode to show only categories of services or parts, with images.
 Author: Smartest Themes
-Version: 0.9.11
+Version: 1.0.0
 Author URI: http://smartestthemes.com
 License: GPL2
 Text Domain: service-parts-categories-pages
@@ -26,17 +26,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
-
-
-/* @test remove
-require_once plugin_dir_path( __FILE__ ) . 'updater.php';
-if ( is_admin() ) {
-    new ST_GitHubPluginUpdater( __FILE__, 'isabelc', "service-parts-categories-pages" );
-}
-
-*/
-
-/* @test */
 require_once plugin_dir_path( __FILE__ ) . 'updater.php';
 if (is_admin()) {
     $config = array(
@@ -133,9 +122,6 @@ add_shortcode('auto_categories', 'smartestthemes_custom_tax_list');
  * Version Number.
  *
  * @return    string    The plugin's version number.
- * @access    private
- * @since     0.7
- * @alter     0.7.4
  */
 function taxonomy_image_plugin_version() {
 	return '0.8.0';
@@ -144,8 +130,6 @@ function taxonomy_image_plugin_version() {
  * Get a url to a file in this plugin.
  *
  * @return    string
- * @access    private
- * @since     0.7
  */
 function taxonomy_image_plugin_url( $file = '' ) {
 	static $path = '';
@@ -158,8 +142,6 @@ function taxonomy_image_plugin_url( $file = '' ) {
  * Detail Image Size.
  *
  * @return    array     Configuration for the "detail" image size.
- * @access    private
- * @since     0.7
  */
 function taxonomy_image_plugin_detail_image_size() {
 	return array(
@@ -169,9 +151,6 @@ function taxonomy_image_plugin_detail_image_size() {
 }
 /**
  * Register custom image size with WordPress.
- *
- * @access    private
- * @since     2010-10-28
  */
 function taxonomy_image_plugin_add_image_size() {
 	$detail = taxonomy_image_plugin_detail_image_size();
@@ -189,9 +168,6 @@ add_action( 'init', 'taxonomy_image_plugin_add_image_size' );
 
 /**
  * Load Plugin Text Domain.
- *
- * @access    private
- * @since     0.7.3
  */
 function taxonomy_image_plugin_text_domain() {
 	load_plugin_textdomain( 'service-parts-categories-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -208,9 +184,6 @@ add_action( 'init', 'taxonomy_image_plugin_text_domain' );
  * @param     stdClass  WordPress post object.
  * @return    array     The image's form array with added button if modal window was accessed by this script.
  *
- * @access    private
- * @since     2010-10-28
- * @alter     0.7
  */
 function taxonomy_image_plugin_modal_button( $fields, $post ) {
 	if ( isset( $fields['image-size'] ) && isset( $post->ID ) ) {
@@ -247,9 +220,6 @@ add_filter( 'attachment_fields_to_edit', 'taxonomy_image_plugin_modal_button', 2
  *
  * @param     int       Image ID.
  * @return    string    URI of custom image on success; emtpy string otherwise.
- *
- * @access    private.
- * @since     2010-10-28
  */
 function taxonomy_image_plugin_get_image_src( $id ) {
 	$detail = taxonomy_image_plugin_detail_image_size();
@@ -326,7 +296,6 @@ function taxonomy_image_plugin_get_image_src( $id ) {
  * @param     array     An array of term_taxonomy_id/attachment_id pairs.
  * @return    array     Sanitized version of parameter.
  *
- * @access    private
  */
 function taxonomy_image_plugin_sanitize_associations( $associations ) {
 	$o = array();
@@ -366,8 +335,7 @@ function taxonomy_image_plugin_json_response( $args ) {
  * @param     int       term_taxonomy_id
  * @return    array     Keys: term_id (int) and taxonomy (string).
  *
- * @access    private
- */
+  */
 function taxonomy_image_plugin_get_term_info( $tt_id ) {
 	static $cache = array();
 	if ( isset( $cache[$tt_id] ) ) {
@@ -417,8 +385,6 @@ function taxonomy_image_plugin_check_permissions( $tt_id ) {
  * Create an association.
  *
  * Callback for the wp_ajax_{$_GET['action']} hook.
- *
- * @access    private
  */
 function taxonomy_image_plugin_create_association() {
 	if ( ! isset( $_POST['tt_id'] ) ) {
@@ -499,7 +465,6 @@ add_action( 'wp_ajax_taxonomy_image_create_association', 'taxonomy_image_plugin_
  * Removes an association from the setting stored in the database.
  * Print json encoded message and terminates script execution.
  *
- * @access    private
  */
 function taxonomy_image_plugin_remove_association() {
 	if ( ! isset( $_POST['tt_id'] ) ) {
@@ -573,8 +538,6 @@ add_action( 'wp_ajax_taxonomy_image_plugin_remove_association', 'taxonomy_image_
  *
  * @param     bool      Should WordPress query the database for the results
  * @return    array     List of associations. Key => taxonomy_term_id; Value => image_id
- *
- * @access    private
  */
 function taxonomy_image_plugin_get_associations( $refresh = false ) {
 	static $associations = array();
@@ -593,9 +556,6 @@ add_action( 'init', 'taxonomy_image_plugin_get_associations' );
  * an image interface to via settings page. These hooks
  * enable the image interface on wp-admin/edit-tags.php.
  *
- * @access    private
- * @since     0.4.3
- * @alter     0.7
  */
 function taxonomy_image_plugin_add_dynamic_hooks() {
 	$settings = get_option( 'taxonomy_image_plugin_settings' );
@@ -620,9 +580,6 @@ add_action( 'admin_init', 'taxonomy_image_plugin_add_dynamic_hooks' );
  *
  * @param     array     A list of columns.
  * @return    array     List of columns with "Images" inserted after the checkbox.
- *
- * @access    private
- * @since     0.4.3
  */
 function taxonomy_image_plugin_taxonomy_columns( $original_columns ) {
 	$new_columns = $original_columns;
@@ -644,8 +601,6 @@ function taxonomy_image_plugin_taxonomy_columns( $original_columns ) {
  * @param     int       Term ID.
  * @return    string    @see taxonomy_image_plugin_control_image()
  *
- * @access    private
- * @since     2010-11-08
  */
 function taxonomy_image_plugin_taxonomy_rows( $row, $column_name, $term_id ) {
 	if ( 'taxonomy_image_plugin' === $column_name ) {
@@ -665,8 +620,6 @@ function taxonomy_image_plugin_taxonomy_rows( $row, $column_name, $term_id ) {
  * @param     stdClass  Term object.
  * @param     string    Taxonomy slug.
  *
- * @access    private
- * @since     2010-11-08
  */
 function taxonomy_image_plugin_edit_tag_form( $term, $taxonomy ) {
 	$taxonomy = get_taxonomy( $taxonomy );
@@ -766,8 +719,6 @@ add_action( 'admin_print_scripts-media-upload-popup', 'taxonomy_image_plugin_med
 
 /**
  * Custom javascript for wp-admin/edit-tags.php.
- *
- * @access    private
  */
 function taxonomy_image_plugin_edit_tags_js() {
 	if ( false == taxonomy_image_plugin_is_screen_active() )
@@ -791,9 +742,6 @@ add_action( 'admin_print_scripts-edit-tags.php', 'taxonomy_image_plugin_edit_tag
 
 /**
  * Custom styles.
- *
- * @since     0.7
- * @access    private
  */
 function taxonomy_image_plugin_css_admin() {
 	if ( false == taxonomy_image_plugin_is_screen_active() && 'admin_print_styles-media-upload-popup' != current_filter() )
@@ -813,9 +761,6 @@ add_action( 'admin_print_styles-media-upload-popup', 'taxonomy_image_plugin_css_
 
 /**
  * Thickbox styles.
- *
- * @since     0.7
- * @access    private
  */
 function taxonomy_image_plugin_css_thickbox() {
 	if ( false == taxonomy_image_plugin_is_screen_active() )
@@ -835,9 +780,6 @@ add_action( 'admin_print_styles-edit-tags.php', 'taxonomy_image_plugin_css_thick
  * file:
  *
  * add_filter( 'taxonomy-images-disable-public-css', '__return_true' );
- *
- * @since     0.7
- * @access    private
  */
 function taxonomy_image_plugin_css_public() {
 	if ( apply_filters( 'taxonomy-images-disable-public-css', false ) )
@@ -919,9 +861,6 @@ function taxonomy_image_plugin_is_screen_active() {
  * using this plugins get_the_terms() style function.
  *
  * @param     array          Post objects.
- *
- * @access    private
- * @since     1.1
  */
 function taxonomy_image_plugin_cache_images( $posts ) {
 	$assoc = taxonomy_image_plugin_get_associations();
@@ -998,9 +937,6 @@ add_action( 'template_redirect', 'taxonomy_image_plugin_cache_queried_images' );
  * @param     string         Taxonomy name as registered with WordPress.
  * @param     string         Name of the current function or filter.
  * @return    bool           True if taxonomy exists, False if not.
- *
- * @access    private
- * @since     0.7
  */
 function taxonomy_image_plugin_check_taxonomy( $taxonomy, $filter ) {
 	if ( ! taxonomy_exists( $taxonomy ) ) {
@@ -1037,9 +973,6 @@ function taxonomy_image_plugin_check_taxonomy( $taxonomy, $filter ) {
  *
  * @param     string         Name of function called.
  * @param     string         Name of filter to use instead.
- *
- * @access    private
- * @since     0.7
  */
 function taxonomy_image_plugin_please_use_filter( $function, $filter ) {
 	trigger_error( sprintf( esc_html__( 'The %1$s has been called directly. Please use the %2$s filter instead.', 'service-parts-categories-pages' ),
