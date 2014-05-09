@@ -808,7 +808,7 @@ add_action( 'wp_print_styles', 'taxonomy_image_plugin_css_public' );
  * ID property of an image attachment.
  *
  * 'taxonomy_image_plugin_settings' (array) A multi-dimensional array
- * of user-defined settings. As of version 0.7, only one key is used:
+ * of user-defined settings. Only one key is used:
  * 'taxonomies' which is a whitelist of registered taxonomies having ui
  * that support the custom image ui provided by this plugin.
  *
@@ -832,9 +832,6 @@ register_activation_hook( __FILE__, 'taxonomy_image_plugin_activate' );
  * Is Screen Active?
  *
  * @return    bool
- *
- * @access    private
- * @since     0.7
  */
 function taxonomy_image_plugin_is_screen_active() {
 	$screen = get_current_screen();
@@ -916,9 +913,6 @@ function taxonomy_image_plugin_cache_images( $posts ) {
  * the main WordPress query.
  *
  * @param     array          Post objects.
- *
- * @access    private
- * @since     0.7
  */
 function taxonomy_image_plugin_cache_queried_images() {
 	global $posts;
