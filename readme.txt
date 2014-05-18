@@ -30,7 +30,10 @@ none
 
 == Changelog ==
 
-= 1.2. =
+= 1.3 =
+* Fix: raw_url for updater was incorrect.
+
+= 1.2 =
 * Initial release.
 
 == Upgrade Notice ==
