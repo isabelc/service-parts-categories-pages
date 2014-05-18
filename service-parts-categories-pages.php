@@ -4,7 +4,7 @@ Plugin Name: Service Parts Categories Pages
 Plugin URI: http://smartestthemes.com/docs/service-categories-page-and-parts-categories-page-plugin/
 Description: Adds a shortcode to show only categories of services or parts, with images.
 Author: Smartest Themes
-Version: 1.2
+Version: 1.3
 Author URI: http://smartestthemes.com
 License: GPL2
 Text Domain: service-parts-categories-pages
@@ -32,11 +32,11 @@ if (is_admin()) {
         'slug' => plugin_basename(__FILE__), // this is the slug of your plugin
         'proper_folder_name' => 'service-parts-categories-pages', // this is the name of the folder your plugin lives in
         'api_url' => 'https://api.github.com/repos/isabelc/service-parts-categories-pages', // the github API url of your github repo
-        'raw_url' => 'https://raw.github.com/isabelc/service-parts-categories-pages/master', // the github raw url of your github repo
+        'raw_url' => 'https://raw.githubusercontent.com/isabelc/service-parts-categories-pages/master', // the github raw url of your github repo
         'github_url' => 'https://github.com/isabelc/service-parts-categories-pages', // the github url of your github repo
         'zip_url' => 'https://github.com/isabelc/service-parts-categories-pages/zipball/master', // the zip url of the github repo
         'sslverify' => true,
-        'requires' => '3.6', // which version of WordPress does your plugin require?
+        'requires' => '3.7', // which version of WordPress does your plugin require?
         'tested' => '3.9.1', // which version of WordPress is your plugin tested up to?
         'readme' => 'README.md', // which file to use as the readme for the version number
         'access_token' => '', // Access private repositories by authorizing under Appearance > Github Updates when this example plugin is installed
