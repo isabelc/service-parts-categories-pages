@@ -1,6 +1,6 @@
 === Service Parts Categories Pages ===
 Contributors: SmartestThemes,isabel104
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40isabelcastillo%2ecom
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=isa%40smartestthemes%2ecom
 Tags: services, auto parts, categories
 Requires at least: 3.7
 Tested up to: 3.9.1
@@ -15,8 +15,6 @@ Adds a shortcode to show only categories of services or parts, with images.
 Adds a shortcode to show only categories of services or parts, with images.
 
 [Setup Instructions](http://smartestthemes.com/docs/service-categories-page-and-parts-categories-page-plugin/)
-
-For support or to report bugs, use the support forum link above, or use [GitHub](https://github.com/isabelc/Organized-Docs). Forking welcome.
 
 == Installation ==
 
