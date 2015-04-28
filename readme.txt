@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=isa%4
 Tags: services, auto parts, categories
 Requires at least: 3.7
 Tested up to: 3.9.1
-Stable Tag: 1.3
+Stable Tag: 1.3.1
 License: GNU Version 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,8 @@ Adds a shortcode to show only categories of services or parts, with images.
 none
 
 == Changelog ==
+= 1.3.1 =
+Security hardening.
 
 = 1.3 =
 * Fix: raw_url for updater was incorrect.
