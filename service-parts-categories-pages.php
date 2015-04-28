@@ -4,7 +4,7 @@ Plugin Name: Service Parts Categories Pages
 Plugin URI: http://smartestthemes.com/docs/service-categories-page-and-parts-categories-page-plugin/
 Description: Adds a shortcode to show only categories of services or parts, with images.
 Author: Smartest Themes
-Version: 1.3
+Version: 1.3.1
 Author URI: http://smartestthemes.com
 License: GPL2
 Text Domain: service-parts-categories-pages
